@@ -3,6 +3,7 @@ node{
      git 'https://github.com/sureshsk-hub/Vedikas_customerService.git'
    }
    stage('Compile-Package'){
-    sh 'mvn package'
+    def mavHome = tool name: 'maven-3', type: 'maven'
+      sh "${mvnHome}/bin/mvn package"
    }
 }
