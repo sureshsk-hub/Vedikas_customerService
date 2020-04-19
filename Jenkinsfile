@@ -1,9 +1,15 @@
 node{
+   
+   environment{
+       PATH ='/home/ubuntu/apache-maven-3.6.3/bin:$PATH'
+   }
    stage('SCM Checkout'){
      git 'https://github.com/sureshsk-hub/Vedikas_customerService.git'
    }
+   
+   
    stage('compile-package'){
-     echo 'This is compilation stage'
+     sh 'mvn clean package'
    }
    stage('test'){
    echo 'This is testing stage'
