@@ -9,6 +9,9 @@ node{
    
    
    stage('compile-package'){
+      tools{
+      tool name: 'maven-3.6.3', type: 'maven'
+      } 
      sh 'mvn clean package'
    }
    stage('testing'){
