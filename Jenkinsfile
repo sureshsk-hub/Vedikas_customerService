@@ -5,8 +5,7 @@ node{
        
       }  
       stage('Build'){
-         //// Get maven home path and build
-        sh "${mvnHome}/bin/mvn clean package 
+        sh 'mvn clean package'
       }
    }
    stage('Deploy'){
