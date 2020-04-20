@@ -6,7 +6,7 @@ node{
       }  
       stage('Build'){
          //// Get maven home path and build
-        sh "${mvnHome}/bin/mvn clean package -Dmaven.test.skip=true"
+        sh "${mvnHome}/bin/mvn clean package 
       }
    }
    stage('Deploy'){
