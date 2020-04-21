@@ -12,7 +12,7 @@ node{
      sh 'mvn clean package'
    }
    
-   stage(test){
+   stage(testing){
    echo 'This is testing stage'  
    }
    stage('deploy'){
