@@ -15,6 +15,7 @@ node{
    stage(testing){
    echo 'This is testing stage'  
    }
+   
    stage('deploy'){
    echo 'This is deploying project stage'
    }
