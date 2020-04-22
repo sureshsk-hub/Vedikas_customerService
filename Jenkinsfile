@@ -12,9 +12,12 @@ node{
      sh 'mvn clean package'
    }
    
-   stage('deploy'){
-   echo 'This is deploying project stage'
+   stage('run application'){
+     export JENKINS_HOME="./my_jenkins_home"
+      java -jar jenkins.war
+   
    }
+   
    
 }
 
