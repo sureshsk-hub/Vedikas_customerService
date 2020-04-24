@@ -1,36 +1,18 @@
-pipeline {
-   agent any
-
-   tools {
-      // Install the Maven version configured as "Maven-3.6.3" and add it to the path.
-      environment {
-  maven = "3.6.3"
-}
-
-   }
-
-   stages {
-      stage('Build') {
-         steps {
-            // Get some code from a GitHub repository
-            git 'https://github.com/sureshsk-hub/Vedikas_customerService.git/'
-
-            // Run Maven on a Unix agent.
-            sh "mvn -Dmaven.test.failure.ignore=true clean package"
-
-            // To run Maven on a Windows agent, use
-            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-         }
-
-         post {
-            // If Maven was able to run the tests, even if some of the test
-            // failed, record the test results and archive the jar file.
-            success {
-               junit '**/target/surefire-reports/TEST-*.xml'
-               archiveArtifacts 'target/*.jar'
-               
-            }
-         }
-      }
-   }
-}
+node{
+    stage('scm checkout'){
+        git credentialsId: 'd3ce0802-e860-4a6c-a1ee-e8f1b5f6bd9b', url: 'https://github.com/sureshsk-hub/Vedikas_customerService.git'
+          }
+          
+          
+          
+    stage('maven package'){
+        def mvnHome = tool name: 'maven-3.6.3', type: 'maven'
+        def mvnCMD = "${mvnHome}/bin/mvn"
+        sh "${mvnCMD} clean package"
+        
+        }
+    stage('Build docker image'){
+        sh 'docker build -t motasuresh/vedics:0.0.1 .'
+        }
+        
+        }
