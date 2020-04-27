@@ -12,5 +12,11 @@ node{
     stage('Build Docker image'){
         sh 'docker build -t motasuresh/vedic-service-app:1.0.0 .'
         }
-
-}
+    stage('Docker login and pushImage'){
+      withCredentials([string(credentialsId: 'dockpswd', variable: 'dockpswd')]) {  
+          sh "docker login -u motasuresh -p ${dockpswd}"
+       }
+       sh 'docker push motasuresh/vedic-service-app:1.0.0 . '
+   }
+    
+}    
